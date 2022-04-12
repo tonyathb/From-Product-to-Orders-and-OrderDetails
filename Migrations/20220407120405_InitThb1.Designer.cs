@@ -4,14 +4,16 @@ using DI_probni.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DI_probni.Data.Migrations
+namespace DI_probni.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220407120405_InitThb1")]
+    partial class InitThb1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,10 +48,7 @@ namespace DI_probni.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("OrderId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("OrderId1")
+                    b.Property<int>("OrderId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductId")
@@ -60,7 +59,7 @@ namespace DI_probni.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderId1");
+                    b.HasIndex("OrderId");
 
                     b.HasIndex("ProductId");
 
@@ -182,6 +181,33 @@ namespace DI_probni.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("DI_probni.Models.ProductVM", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductVM");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -332,7 +358,9 @@ namespace DI_probni.Data.Migrations
                 {
                     b.HasOne("DI_probni.Data.Order", "Order")
                         .WithMany("OrderDetails")
-                        .HasForeignKey("OrderId1");
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DI_probni.Data.Product", "Product")
                         .WithMany("OrderDetails")

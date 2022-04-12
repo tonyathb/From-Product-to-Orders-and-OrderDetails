@@ -51,7 +51,6 @@ C:\Users\tbele\source\repos\DI-probni\bin\Debug\net5.0\runtimes\win-x86\native\M
 C:\Users\tbele\source\repos\DI-probni\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\Users\tbele\source\repos\DI-probni\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\tbele\source\repos\DI-probni\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\tbele\source\repos\DI-probni\obj\Debug\net5.0\DI-probni.csproj.AssemblyReference.cache
 C:\Users\tbele\source\repos\DI-probni\obj\Debug\net5.0\DI-probni.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\tbele\source\repos\DI-probni\obj\Debug\net5.0\DI-probni.AssemblyInfoInputs.cache
 C:\Users\tbele\source\repos\DI-probni\obj\Debug\net5.0\DI-probni.AssemblyInfo.cs
@@ -169,6 +168,15 @@ C:\Users\tbele\source\repos\DI-probni\obj\Debug\net5.0\Razor\Views\Orders\Edit.c
 C:\Users\tbele\source\repos\DI-probni\obj\Debug\net5.0\Razor\Views\Orders\Index.cshtml.g.cs
 C:\Users\tbele\source\repos\DI-probni\obj\Debug\net5.0\Razor\Views\OrderDetails\Create.cshtml.g.cs
 C:\Users\tbele\source\repos\DI-probni\obj\Debug\net5.0\Razor\Views\OrderDetails\Delete.cshtml.g.cs
-C:\Users\tbele\source\repos\DI-probni\obj\Debug\net5.0\Razor\Views\OrderDetails\Details.cshtml.g.cs
-C:\Users\tbele\source\repos\DI-probni\obj\Debug\net5.0\Razor\Views\OrderDetails\Edit.cshtml.g.cs
 C:\Users\tbele\source\repos\DI-probni\obj\Debug\net5.0\Razor\Views\OrderDetails\Index.cshtml.g.cs
+C:\Users\tbele\source\repos\DI-probni\obj\Debug\net5.0\Razor\Views\Products\Details1.cshtml.g.cs
+C:\Users\tbele\source\repos\DI-probni\obj\Debug\net5.0\Razor\Views\Products\_ProductOrder.cshtml.g.cs
+C:\Users\tbele\source\repos\DI-probni\obj\Debug\net5.0\DI-probni.csproj.AssemblyReference.cache
+C:\Users\tbele\source\repos\DI-probni\obj\Debug\net5.0\Razor\Views\Reservations\Create.cshtml.g.cs
+C:\Users\tbele\source\repos\DI-probni\obj\Debug\net5.0\Razor\Views\Reservations\Delete.cshtml.g.cs
+C:\Users\tbele\source\repos\DI-probni\obj\Debug\net5.0\Razor\Views\Reservations\Details.cshtml.g.cs
+C:\Users\tbele\source\repos\DI-probni\obj\Debug\net5.0\Razor\Views\Reservations\Edit.cshtml.g.cs
+C:\Users\tbele\source\repos\DI-probni\obj\Debug\net5.0\Razor\Views\Reservations\Index.cshtml.g.cs
+C:\Users\tbele\source\repos\DI-probni\obj\Debug\net5.0\Razor\Views\Products\Details2.cshtml.g.cs
+C:\Users\tbele\source\repos\DI-probni\obj\Debug\net5.0\Razor\Views\OrderDetails\1Details.cshtml.g.cs
+C:\Users\tbele\source\repos\DI-probni\obj\Debug\net5.0\Razor\Views\OrderDetails\1Edit.cshtml.g.cs

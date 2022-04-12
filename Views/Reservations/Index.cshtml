@@ -1,0 +1,60 @@
+﻿@model IEnumerable<DI_probni.Data.Reservation>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-action="Index" method="get">
+    <p>
+        Filter date: <input type="date" name="searchDate"   class="form-control" data-val="true" asp-format="{0:dd-MM-yyyy}" value="22-04-2022" />
+        <input type="submit" value="SEARCH FREE Reservations" />
+    </p>
+</form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndDate)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

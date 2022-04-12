@@ -33,7 +33,15 @@ namespace DI_probni
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
+            services.AddDistributedMemoryCache();
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(5);//You can set Time   
+            });
+            services.AddMvc();
+
 
             services.AddControllersWithViews();
         }
@@ -54,7 +62,7 @@ namespace DI_probni
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthentication();

@@ -9,6 +9,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+@*<form class="" asp-action="Calculate" method="get">*@
 <table class="table">
     <thead>
         <tr>
@@ -18,30 +19,37 @@
             <th>
                 @Html.DisplayNameFor(model => model.Product)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Quantity)
+            <th colspan="2">
+                Quantity &nbsp;*&nbsp;Price        @*@Html.DisplayNameFor(model => model.Quantity)*@
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Product.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>
+                <td>
+                    <input type="number" asp-for="@item.Quantity">        @*@Html.DisplayFor(modelItem => item.Quantity)*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Price)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+<a class="btn btn-sm btn-warning" asp-action="Calculate" asp-route-orderId="@Model.First().OrderId">FINAL</a>
+@*<input type="submit" class="btn btn-sm btn-warning" value="F I N A L" />
+    </form>*@

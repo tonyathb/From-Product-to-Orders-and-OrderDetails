@@ -18,11 +18,22 @@ namespace DI_probni.Controllers
         {
             _context = context;
         }
-
-        // GET: Products
-        public async Task<IActionResult> Index()
+       
+        [HttpPost]
+        public string Index(string searchString, bool notUsed)
         {
-            return View(await _context.Products.ToListAsync());
+            return "From [HttpPost]Index: filter on " + searchString;
+        }
+        // GET: Products
+        public async Task<IActionResult> Index(string searchString)
+        {
+            ViewData["SearchName"] = searchString;
+            var products = await _context.Products.ToListAsync();
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(x => x.Name.Contains(searchString)).ToList();
+            }
+            return View(products);
         }
 
         // GET: Products/Details/5
@@ -41,12 +52,13 @@ namespace DI_probni.Controllers
             }
             ProductVM productVM = new ProductVM()
             {
+                Id = product.Id,
                 Name = product.Name,
-                Id = (int)id,//product.Id,
+                Description = product.Description,
                 Price = product.Price,
                 Quantity = 1
             };
-
+            
             return View(productVM);
         }
 
