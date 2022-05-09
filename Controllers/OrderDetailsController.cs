@@ -103,7 +103,7 @@ namespace DI_probni.Controllers
         {
             return HttpContext.Session.GetInt32("OrderSessionKey");
         }
-        []
+        //[NonAction]
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
