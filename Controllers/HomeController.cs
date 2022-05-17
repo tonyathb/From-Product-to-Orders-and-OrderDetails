@@ -20,6 +20,9 @@ namespace DI_probni.Controllers
 
         public IActionResult Index()
         {
+            TempData["OrderActive"] = false;
+            TempData.Keep(); //запазване на всички ключ-стойности 
+
             return View();
         }
 

@@ -10,50 +10,50 @@
     <h4>Product</h4>
     <hr />
     @*@using (Html.BeginForm("Create", "OrderDetails", FormMethod.Post))
-    {
-        <dl class="shadow">
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Price)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Price)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Description)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model=>model.Description)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Quantity)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Quantity)
-            </dd>
-        </dl>
-        <div class="form-group">
-            <button type="submit" >ORDER IT</button>
-            <button type="button" value="Финализирай поръчката">Финализирай поръчката</button>
-        </div>
-    }
-    <div>
-        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-        <a asp-action="Index">Back to List</a>
-    </div>
-</div>*@
+            {
+                <dl class="shadow">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Price)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Price)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Description)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model=>model.Description)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Quantity)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Quantity)
+                    </dd>
+                </dl>
+                <div class="form-group">
+                    <button type="submit" >ORDER IT</button>
+                    <button type="button" value="Финализирай поръчката">Финализирай поръчката</button>
+                </div>
+            }
+            <div>
+                <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </div>*@
 
 
-@*<div>
-        @{Html.RenderPartial("_ProductOrder");}
-    </div>*@
-@* <partial name="_ProductOrder"  model="@Model.ProductOrder"/>*@
-<a asp-controller="OrderDetails" asp-action="Create">    
+    @*<div>
+            @{Html.RenderPartial("_ProductOrder");}
+        </div>*@
+    @* <partial name="_ProductOrder"  model="@Model.ProductOrder"/>*@
+    <!--<a asp-controller="OrderDetails" asp-action="Create">  -->
     <div class="card">
         <form asp-controller="OrderDetails" asp-action="Create" method="post">
             <div class="shadow">
@@ -77,17 +77,20 @@
                 <input asp-for="Quantity" type="number" maxlength="4" class="form-control" />
                 <span asp-validation-for="Quantity" class="text-danger"></span>
             </div>
+            @if (User.Identity.IsAuthenticated) { 
             <div class="carousel-caption">
-                <input type="submit" value="ORDER IT" />
-                <input type="button" value="FINAL" asp-action="Index" asp-controller="OrderDetails" />@*FINAL the ORDER</input>*@
+                <input type="submit" value="Добави в кошницата" />
+                <a class="btn btn-sm btn-outline-success" asp-action="Index" asp-controller="OrderDetails">Завърши поръчката</a>
+                <!--<input type="button" value="FINAL" asp-action="Index" asp-controller="OrderDetails" />--> @*FINAL the ORDER</input>*@
             </div>
+            }
         </form>
     </div>
-</a>
-<div>
-    
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-    @*<a asp-controller="OrderDetails" asp-action="Create" asp-route-id="@Model.Id" asp-route-qty="@Model.Quantity">ORDER IT >>></a>*@
-</div>
-</div>
+    <!--</a> -->
+    <div>
+
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+        @*<a asp-controller="OrderDetails" asp-action="Create" asp-route-id="@Model.Id" asp-route-qty="@Model.Quantity">ORDER IT >>></a>*@
+    </div>
+    </div>

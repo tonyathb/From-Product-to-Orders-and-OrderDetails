@@ -31,7 +31,7 @@ namespace DI_probni.Controllers
             var products = await _context.Products.ToListAsync();
             if (!string.IsNullOrEmpty(searchString))
             {
-                products = products.Where(x => x.Name.Contains(searchString)).ToList();
+                products = products.Where(x => x.Name.Contains(searchString) ).ToList();
             }
             return View(products);
         }

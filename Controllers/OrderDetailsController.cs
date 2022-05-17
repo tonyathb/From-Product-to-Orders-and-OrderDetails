@@ -43,11 +43,7 @@ namespace DI_probni.Controllers
 
             return View(await applicationDbContext.ToListAsync());
         }
-        //{
-        //    var applicationDbContext = _context.OrderDetails
-        //        .Include(o => o.Product);
-        //    return View(await applicationDbContext.ToListAsync());
-        //}
+        
         public async Task<IActionResult> Calculate(int orderId)
         {
             var currentUser = _userManager.GetUserId(User);
@@ -75,40 +71,29 @@ namespace DI_probni.Controllers
             await _context.SaveChangesAsync();
             //изтрива ОРДЕРид от сесията
             HttpContext.Session.Remove("OrderSessionKey");
+            TempData["OrderActive"] = false;
 
-            return Content("SUM = " + sum.ToString());
+            TempData["Message"] = "Успешно поръчахте на стойност " + sum.ToString();
+            return RedirectToAction("Index", "Products");
+            //return Content("SUM = " + sum.ToString());
             //return View(await applicationDbContext.ToListAsync());
         }
-        // GET: OrderDetails/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var orderDetails = await _context.OrderDetails
-                .Include(o => o.Product)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (orderDetails == null)
-            {
-                return NotFound();
-            }
-
-            return View(orderDetails);
-        }
-
+        
+[NonAction]
         //метод за взимане на информацията от сесията за потребителя
         public int? GetOrdertId()
         {
             return HttpContext.Session.GetInt32("OrderSessionKey");
         }
-        //[NonAction]
+        
+
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProductVM product)
         {
+            TempData.Keep(); //запазване на всички ключ-стойности 
+
             if (!ModelState.IsValid) //при грешка в модела
             {
                 ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id");
@@ -120,11 +105,13 @@ namespace DI_probni.Controllers
                 Order order = new Order()
                 {
                     UserId = _userManager.GetUserId(User),
-                    OrderedOn = DateTime.Now.Date
+                    OrderedOn = DateTime.Now
                 };
                 _context.Orders.Add(order);
                 await _context.SaveChangesAsync();
                 HttpContext.Session.SetInt32("OrderSessionKey", order.Id);// Създавам запис в СЕСИЯТА за потребителя с Номер поръчка
+                TempData["Message"] = "Имате поръчка, която не е завършена!";
+                TempData["OrderActive"] = true;
             }
 
             //Ако потребителят ВЕЧЕ е направил поръчка!!
@@ -150,7 +137,24 @@ namespace DI_probni.Controllers
             //return Content("OK");
             return RedirectToAction("Index", "Products"); //??? къде да се върнем?
         }
+// GET: OrderDetails/Details/5
+        //public async Task<IActionResult> Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
+        //    var orderDetails = await _context.OrderDetails
+        //        .Include(o => o.Product)
+        //        .FirstOrDefaultAsync(m => m.Id == id);
+        //    if (orderDetails == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(orderDetails);
+        //}
         // POST: OrderDetails/Create>>>>>>> СТАРАТА версия от ГИТ-а
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.

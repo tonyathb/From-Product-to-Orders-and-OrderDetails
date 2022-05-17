@@ -36,7 +36,7 @@
                     @Html.DisplayFor(modelItem => item.Product.Name)
                 </td>
                 <td>
-                    <input type="number" asp-for="@item.Quantity">        @*@Html.DisplayFor(modelItem => item.Quantity)*@
+                    <input type="number" asp-for="@item.Quantity" readonly>        @*@Html.DisplayFor(modelItem => item.Quantity)*@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Product.Price)
